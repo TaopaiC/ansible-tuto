@@ -126,14 +126,14 @@ changed, but we had to cheat a bit for that. Here is the updated haproxy playboo
       notify:
         - restart haproxy
 
-        - name: Sets default starting flag to 1
-          lineinfile: dest=/etc/default/haproxy regexp="^ENABLED" line="ENABLED=1"
-          notify:
-            - restart haproxy 
+    - name: Sets default starting flag to 1
+      lineinfile: dest=/etc/default/haproxy regexp="^ENABLED" line="ENABLED=1"
+      notify:
+        - restart haproxy 
 
-      handlers:
-        - name: restart haproxy
-          service: name=haproxy state=restarted
+  handlers:
+    - name: restart haproxy
+      service: name=haproxy state=restarted
 ```
 
 See? We added an empty play for web hosts at the top. It does nothing. But it's
